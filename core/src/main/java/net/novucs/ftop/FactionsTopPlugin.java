@@ -120,6 +120,9 @@ public final class FactionsTopPlugin extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        getLogger().warning("This is a fork of the factions-top plugin by novucs");
+        getLogger().warning("It is meant as a temporary measure until novucs can update the plugin");
+        getLogger().warning("This fork only works with FactionsUUID 0.5.0 and up");
         if (!loadFactionsHook()) {
             getLogger().severe("No valid version of factions was found!");
             getLogger().severe("Disabling FactionsTop . . .");
@@ -261,17 +264,7 @@ public final class FactionsTopPlugin extends JavaPlugin {
     }
 
     private void loadCraftbukkitHook() {
-        String version = getServer().getClass().getPackage().getName().split("\\.")[3];
-
-        if (version.compareTo("v1_7_R4") <= 0 && version.split("_")[1].length() == 1) {
-            craftbukkitHook = new Craftbukkit17R4();
-        } else if (version.equals("v1_8_R1")) {
-            craftbukkitHook = new Craftbukkit18R1();
-        } else if (version.equals("v1_8_R2")) {
-            craftbukkitHook = new Craftbukkit18R2();
-        } else {
-            craftbukkitHook = new Craftbukkit18R3();
-        }
+        craftbukkitHook = new Craftbukkit18R3();
     }
 
     private void loadSpawnerStackerHook() {
@@ -305,16 +298,6 @@ public final class FactionsTopPlugin extends JavaPlugin {
 
     private boolean loadFactionsHook() {
         Plugin factions = getServer().getPluginManager().getPlugin("Factions");
-        if (factions == null) {
-            factions = getServer().getPluginManager().getPlugin("LegacyFactions");
-
-            if (factions == null) {
-                return false;
-            }
-
-            factionsHook = new LegacyFactions0103(this);
-            return true;
-        }
 
         // Attempt to find a valid hook for the factions version.
         String[] components = factions.getDescription().getVersion().split("\\.");
@@ -324,22 +307,8 @@ public final class FactionsTopPlugin extends JavaPlugin {
             case "1.6":
                 factionsHook = new Factions0106(this);
                 return true;
-            case "1.8":
-                factionsHook = new Factions0108(this);
-                return true;
-            case "2.7":
-            case "2.8":
-            case "2.9":
-            case "2.10":
-                factionsHook = new Factions0207(this);
-                return true;
-            case "2.11":
-                factionsHook = new Factions0211(this);
-                return true;
-            default:
-                factionsHook = new Factions0212(this);
-                return true;
         }
+        return false;
     }
 
     private void loadPlaceholderHook() {

@@ -1,6 +1,10 @@
 # Novucs' FactionsTop
 An efficient and comprehensive factions ranking system.
 
+# THIS IS NOT THE OFFICIAL PAGE
+
+## This is a temporary measure to support the plugin until novucs can update it
+
 This Bukkit plugin adds a command to the well known factions plugin to display
 all factions on the server, ordered by wealth. The wealth of a faction is
 determined by calculating the value of all blocks and chest contents stored in
@@ -8,11 +12,7 @@ the faction claims. This specific implementation aims to provide real-time
 results while still maintaining a good performance.
 
 ## Supports
-* Spigot 1.7+
 * FactionsUUID by drtshock
-* LegacyFactions by MarkehMe
-* FactionsOne
-* MassiveCore Factions 2.7+
 * H2 and MySQL
 
 ## Usage
@@ -43,20 +43,6 @@ results while still maintaining a good performance.
 ```sh
 # Clone the factions-top repository.
 git clone git@github.com:novucs/factions-top.git
-
-# Create and switch to build tools directory, use your own if exists.
-mkdir buildtools && cd buildtools
-
-# Fetch latest buildtools version.
-wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
-
-# Install required craftbukkit dependencies to maven.
-java -jar BuildTools.jar --rev 1.8 && \
-  java -jar BuildTools.jar --rev 1.8.3 && \
-  java -jar BuildTools.jar --rev 1.8.8
-
-# Change directory to factions-top.
-cd ../factions-top
 
 # Install factions-top.
 mvn clean install

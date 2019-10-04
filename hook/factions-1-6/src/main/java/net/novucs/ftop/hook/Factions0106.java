@@ -36,14 +36,8 @@ public class Factions0106 extends FactionsHook {
     @Override
     public void initialize() {
         try {
-            Class<?> boardClass, factionsClass;
-            try {
-                boardClass = Class.forName("com.massivecraft.factions.zcore.persist.MemoryBoard");
-                factionsClass = Class.forName("com.massivecraft.factions.zcore.persist.MemoryFactions");
-            } catch(ClassNotFoundException ex) {
-                boardClass = Class.forName("com.massivecraft.factions.data.MemoryBoard");
-                factionsClass = Class.forName("com.massivecraft.factions.data.MemoryFactions");
-            }
+            Class<?> boardClass = Class.forName("com.massivecraft.factions.data.MemoryBoard");
+            Class<?> factionsClass = Class.forName("com.massivecraft.factions.data.MemoryFactions");
 
             Field flocationIdsField = boardClass.getDeclaredField("flocationIds");
             flocationIdsField.setAccessible(true);
